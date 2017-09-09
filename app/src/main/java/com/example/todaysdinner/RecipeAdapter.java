@@ -38,7 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
         final ListItem listItem = recipeItemList.get(i);
                 //Render image using Picasso library
                 if (!TextUtils.isEmpty(listItem.getImage())) {
-                    Picasso.with(mContext).load(listItem.getImage())
+                    Picasso.with(mContext).load(listItem.getImage()).resize(350,350)
                             .error(R.drawable.placeholder)
                             .placeholder(R.drawable.placeholder)
                             .into(customViewHolder.imageView);
@@ -50,8 +50,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
                             onItemClickListener.onItemClick(listItem,i);
                         }
                     };
-              //      customViewHolder.imageView.setOnClickListener(listener);
-                //    customViewHolder.textView.setOnClickListener(listener);
+                    customViewHolder.imageView.setOnClickListener(listener);
+                   customViewHolder.textView.setOnClickListener(listener);
                 }
     }
 
@@ -70,7 +70,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.CustomView
             super(view);
             this.imageView = (ImageView) view.findViewById(R.id.iv);
             this.textView = (TextView) view.findViewById(R.id.resulttext);
-            this.invitextView = (TextView)view.findViewById(R.id.invi);
+         //   this.invitextView = (TextView)view.findViewById(R.id.invi);
             this.myrecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         }
     }

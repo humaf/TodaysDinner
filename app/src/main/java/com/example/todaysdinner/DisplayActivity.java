@@ -2,10 +2,13 @@ package com.example.todaysdinner;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,20 +48,26 @@ public class DisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         mRecyclerView =(RecyclerView)findViewById(R.id.recycler_view);
         emptyview = (TextView)findViewById(R.id.empty_view);
-        backbtn =(Button)findViewById(R.id.back);
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+       // LinearLayoutManager manager = new LinearLayoutManager(this);
+       // manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        GridLayoutManager manager = new GridLayoutManager(DisplayActivity.this,2);
+
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
         //Get the bundle
         Bundle bundle = getIntent().getExtras();
 
-        //Extract the data…
-        String user = bundle.getString("userinput");
-        DownloadRecipes task = new DownloadRecipes();
-        task.execute("http://www.recipepuppy.com/api/?i=" + user);//&q=caserole&p=3");
-    }
 
+    //Extract the data…
+        String user = bundle.getString("userinput");
+        if (!isNetworkAvailable(this) == false) {
+            DownloadRecipes task = new DownloadRecipes();
+            task.execute("http://www.recipepuppy.com/api/?i=" + user);
+
+        }
+    }
 
 
     public class DownloadRecipes extends AsyncTask<String, Void, List<ListItem>> {
@@ -107,15 +116,19 @@ public class DisplayActivity extends AppCompatActivity {
           for (int i = 0; i < posts.length(); i++) {
               JSONObject post = posts.optJSONObject(i);
               ListItem item = new ListItem();
-              item.setTitle(post.optString("title"));
-              Log.i("checking", post.optString("title"));
-              item.setImage(post.optString("thumbnail"));
-              Log.i("Imageeeeeeee", post.optString("thumbnail"));
               newurl = post.optString("href");
-              u.add(newurl);
-              Log.i("URl of website",post.optString("href"));
-              recipeList.add(item);
-              Log.d("recipe",recipeList.toString());
+              boolean check =  newurl.matches(".*\\b(kraftfoods)\\b.*");
+                if(!check) {
+
+                    u.add(newurl);
+                    item.setTitle(post.optString("title"));
+                    Log.i("checking", post.optString("title"));
+                    item.setImage(post.optString("thumbnail"));
+                    Log.i("Imageeeeeeee", post.optString("thumbnail"));
+                    Log.i("URl of website", post.optString("href"));
+                    recipeList.add(item);
+                    Log.d("recipe", recipeList.toString());
+                }
           }
       } catch (JSONException e) {
           e.printStackTrace();
@@ -150,5 +163,19 @@ public class DisplayActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+
+    public Boolean isNetworkAvailable(Context context) {
+
+        Boolean resultValue = false; // Initial Value
+
+        ConnectivityManager manager = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            resultValue = true;
+        }
+        return resultValue;
     }
 }

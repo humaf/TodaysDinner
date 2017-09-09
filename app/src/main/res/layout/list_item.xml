@@ -1,49 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    cardview:cardCornerRadius="2dp"
-    cardview:cardElevation="3dp"
-    cardview:cardBackgroundColor="#cde4d2"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    cardview:cardUseCompatPadding="true">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:clickable="true"
-        android:id="@+id/resulttext"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="12dp"
-        android:maxLines="3"
-        android:padding="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="#444"
-        android:textSize="18dp"
-        android:textStyle="bold"
- />
-        <TextView
-            android:id="@+id/invi"
-            android:layout_alignRight="@id/resulttext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginLeft="30dp"
+        android:layout_height="wrap_content"
         android:id="@+id/iv"
-        android:layout_alignParentRight="true"
-        />
-</RelativeLayout>
-</android.support.v7.widget.CardView>
+        >
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#00000c"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:id="@+id/resulttext"/>
+</LinearLayout>
+
