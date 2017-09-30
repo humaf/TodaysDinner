@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,12 +37,8 @@ public class DisplayActivity extends AppCompatActivity {
     String newurl="";
     private TextView emptyview;
     private Button backbtn;
+    private String user;
 
-    public void backclick(View view){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +59,16 @@ public class DisplayActivity extends AppCompatActivity {
 
 
     //Extract the data…
-        String user = bundle.getString("userinput");
+        if(bundle!=null) {
+             user = bundle.getString("userinput");
+        }
         if (!isNetworkAvailable(this) == false) {
             DownloadRecipes task = new DownloadRecipes();
             task.execute("http://www.recipepuppy.com/api/?i=" + user);
-
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Please Connect to Internet",Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
@@ -164,9 +167,7 @@ public class DisplayActivity extends AppCompatActivity {
             });
         }
     }
-
-
-    public Boolean isNetworkAvailable(Context context) {
+  public Boolean isNetworkAvailable(Context context) {
 
         Boolean resultValue = false; // Initial Value
 
