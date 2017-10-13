@@ -5,49 +5,68 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayAdapter<String> m_adapter;
-    private List<ListItem> ItemList;
-    ArrayList<String> m_listItems = new ArrayList<String>();
+
+    private List<RecyclerItem> ItemList;
+    List<RecyclerItem> m_listItems = new ArrayList<>();
     Button btn;
+    RecyclerView recyclerView;
+    String[] mStringArray;
     FloatingActionButton fab;
-    ImageButton Addbtn;
     ListView lv;
     EditText edit;
+    private RecyclerAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private  RecyclerItem item;
     Bundle bundle = new Bundle();
-
 
     public void addFunction(View view) {
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-        final String input = edit.getText().toString();
+        String input = edit.getText().toString();
         bundle.putString("userinput", input);
 
-        String[] values = new String[] {"", input};
         if(null!=input&&input.length()>0) {
-            m_listItems.add(new String(input));
-            m_adapter.notifyDataSetChanged();
-            lv.setAdapter(m_adapter);
+            item.setIngredient(input);
+            Log.i("checking item ",item.getIngredient().toString());
+            Log.i("checking",m_listItems.toString());
+            m_listItems.add(item);
+            Log.i("checking adding" ,m_listItems.toString());
             edit.setText("");
             btn.setEnabled(true);
+            adapter.notifyDataSetChanged();
         }
+
+        /*
+
+                        String newName = nameField.getText().toString();
+                if(!newName.equals("")){
+                    if(myRecyclerViewAdapter.getItemCount()>1){
+                        myRecyclerViewAdapter.add(1, newName);
+                    }else{
+                        myRecyclerViewAdapter.add(0, newName);
+                    }
+         */
+
+
+
+
+
+
     }
 
     public void getRecipes(View view){
@@ -61,19 +80,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   Addbtn = (ImageButton) findViewById(R.id.imageButton);
-
         edit = (EditText) findViewById(R.id.e1);
 
-       lv = (ListView) findViewById(R.id.listView);
-
-        m_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, m_listItems);
 
         btn = (Button)findViewById(R.id.recipebtn);
 
         fab = (FloatingActionButton)findViewById(R.id.floating_action_button);
 
         btn.setEnabled(false);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecyclerAdapter(getApplicationContext(), m_listItems);
+        recyclerView.setAdapter(adapter);
+        item = new RecyclerItem();
 
     }
 }

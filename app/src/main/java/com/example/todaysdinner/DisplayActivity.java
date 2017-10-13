@@ -47,9 +47,6 @@ public class DisplayActivity extends AppCompatActivity {
         mRecyclerView =(RecyclerView)findViewById(R.id.recycler_view);
         emptyview = (TextView)findViewById(R.id.empty_view);
 
-       // LinearLayoutManager manager = new LinearLayoutManager(this);
-       // manager.setOrientation(LinearLayoutManager.VERTICAL);
-
         GridLayoutManager manager = new GridLayoutManager(DisplayActivity.this,2);
 
         mRecyclerView.setLayoutManager(manager);
@@ -122,7 +119,6 @@ public class DisplayActivity extends AppCompatActivity {
               newurl = post.optString("href");
               boolean check =  newurl.matches(".*\\b(kraftfoods)\\b.*");
                 if(!check) {
-
                     u.add(newurl);
                     item.setTitle(post.optString("title"));
                     Log.i("checking", post.optString("title"));
