@@ -1,0 +1,17 @@
+# TodaysDinner
+
+This is a recipe app which helps users with daily dinner recipes with whatever ingredients they have in the fridge. I built this application from scratch .Some of the things I used while building this app are
+
+* Intents.
+
+* Recycler Views.
+
+* Recipe Puppy API.
+
+## Screens
+
+![image](https://user-images.githubusercontent.com/16161998/37578568-fd83dd40-2af6-11e8-8bda-9450574630b4.png)
+
+![image](https://user-images.githubusercontent.com/16161998/37578579-1415da5e-2af7-11e8-9bde-35a0ae1af39b.png)
+
+
