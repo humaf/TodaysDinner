@@ -8,6 +8,12 @@ This is a recipe app which helps users with daily dinner recipes with whatever i
 
 * Recipe Puppy API.
 
+## Features
+
+  * User can see all the names of Recipes which they can make.
+  
+  
+
 ## Screens
 
 ![image](https://user-images.githubusercontent.com/16161998/37578568-fd83dd40-2af6-11e8-8bda-9450574630b4.png)
