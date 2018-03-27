@@ -10,11 +10,12 @@ This is a recipe app which helps users with daily dinner recipes with whatever i
 
 * Picasso.
 
-* Web Views
+* Web Views.
 
 ## Features
 
   * User can see all the names of Recipes which they can make.
+  
   
   ## Screens
 
