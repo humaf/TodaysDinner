@@ -12,6 +12,13 @@ This is a recipe app which helps users with daily dinner recipes with whatever i
 
 * Web Views.
 
+# Challenges
+  
+  * This was my first time working with the third party API's. I had to do a bit of reasearch for using it.
+  
+  * I also used Picasso for the first time while making this app.
+  
+
 ## Features
 
   * User can see all the names of Recipes which they can make.
