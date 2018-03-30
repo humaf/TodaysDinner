@@ -16,6 +16,8 @@ This is a recipe app which helps users with daily dinner recipes with whatever i
 
   * User can see all the names of Recipes which they can make.
   
+  * User can access the full recipes by clicking on recipe name.
+  
   
   ## Screens
 
