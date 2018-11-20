@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /*
-
-                        String newName = nameField.getText().toString();
+                  String newName = nameField.getText().toString();
                 if(!newName.equals("")){
                     if(myRecyclerViewAdapter.getItemCount()>1){
                         myRecyclerViewAdapter.add(1, newName);
@@ -61,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
                         myRecyclerViewAdapter.add(0, newName);
                     }
          */
-
-
-
-
-
 
     }
 
