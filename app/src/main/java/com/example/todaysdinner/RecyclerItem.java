@@ -6,7 +6,7 @@ package com.example.todaysdinner;
 
 public class RecyclerItem {
 
-    private  static String ingredient ;
+    private   String ingredient ;
 
     public RecyclerItem(){
         super();
@@ -16,7 +16,7 @@ public class RecyclerItem {
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
-    public  static String getIngredient(){
+    public   String getIngredient(){
         return ingredient;
     }
 }

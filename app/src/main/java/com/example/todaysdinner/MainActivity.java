@@ -37,10 +37,16 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
+
         String input = edit.getText().toString();
+        Log.i("user Input",input);
         bundle.putString("userinput", input);
 
-        if(null!=input&&input.length()>0) {
+        adapter = new RecyclerAdapter(getApplicationContext(), m_listItems);
+         recyclerView.setAdapter(adapter);
+         item = new RecyclerItem();
+
+        if(input!=null&&input.length()>0) {
             item.setIngredient(input);
             Log.i("checking item ",item.getIngredient().toString());
             Log.i("checking",m_listItems.toString());
@@ -76,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
         edit = (EditText) findViewById(R.id.e1);
 
-
         btn = (Button)findViewById(R.id.recipebtn);
 
         fab = (FloatingActionButton)findViewById(R.id.floating_action_button);
@@ -86,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerAdapter(getApplicationContext(), m_listItems);
-        recyclerView.setAdapter(adapter);
-        item = new RecyclerItem();
+    //    adapter = new RecyclerAdapter(getApplicationContext(), m_listItems);
+      //  recyclerView.setAdapter(adapter);
+      // item = new RecyclerItem();
 
     }
 }

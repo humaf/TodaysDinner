@@ -33,10 +33,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(final RecyclerViewHolder holder, int position) {
-        final RecyclerItem recyclerItem = ingItemList.get(position);
-        RecyclerViewHolder.textView.setText(RecyclerItem.getIngredient());
-        Log.d("check", RecyclerItem.getIngredient().toString());
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+      RecyclerItem recyclerItem = ingItemList.get(position);
+        holder.textView.setText(recyclerItem.getIngredient());
+        Log.d("check", recyclerItem.getIngredient().toString());
     }
 
     @Override
@@ -44,8 +44,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return ingItemList.size();
     }
 
-    public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        public static TextView textView;
+    public  class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        public  TextView textView;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
