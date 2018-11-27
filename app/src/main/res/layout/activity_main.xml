@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,73 +11,65 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-       <EditText
-                android:id="@+id/e1"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:hint="Enter ingredients..."
-                android:layout_marginLeft="70dp"
-                android:gravity="center_horizontal"
-                android:inputType="text"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
-                />
+    <EditText
+        android:id="@+id/e1"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:hint="Enter ingredients..."
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:singleLine="true"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 
-        <!--      <ListView
-                 android:layout_width="500dp"
-                 android:layout_height="200dp"
-                 android:layout_marginTop="130dp"
-                 android:layout_marginLeft="50dp"
-                 android:id="@+id/listView"
-                />
 
-                -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_below="@+id/e1"
+            app:layout_constraintTop_toBottomOf="@+id/e1"
             android:scrollbars="vertical"
             android:orientation="vertical"
             android:visibility="visible" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center|bottom"
+        android:clickable="true"
+        android:onClick="addFunction"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/light"
+        app:elevation="18dp"
+        app:layout_anchorGravity="bottom|center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view"
+        app:layout_constraintRight_toRightOf="parent" />
+    />
 
 
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="horizontal">
-             <Button
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="Get Recipies"
-                 android:layout_gravity="bottom|center_horizontal"
-                 android:backgroundTint="@color/light"
-                 android:layout_marginLeft="100dp"
-                 android:layout_marginRight="30dp"
-                 android:elevation="8dp"
-                 android:onClick="getRecipes"
-                 android:id="@+id/recipebtn" />
 
-             <android.support.design.widget.FloatingActionButton
-                 android:id="@+id/floating_action_button"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginBottom="36dp"
-                 android:layout_marginRight="36dp"
-                 app:backgroundTint="@color/light"
-                 android:clickable="true"
-                 android:onClick="addFunction"
-                 android:layout_alignParentBottom="true"
-                 android:layout_alignParentRight="true"
+    <Button
+        android:id="@+id/recipebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/light"
+        android:elevation="8dp"
+        android:onClick="getRecipes"
+        android:text="Get Recipies"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/floating_action_button"
+       />
 
-                 app:layout_anchorGravity="bottom|center_horizontal"
-                 android:src="@drawable/ic_add"
-                 android:layout_gravity="center|bottom"
-                 app:elevation="18dp"/>
-             />
 
-         </LinearLayout>
-     </RelativeLayout>
+
+     </android.support.constraint.ConstraintLayout>
